@@ -2,7 +2,7 @@ mod days;
 use std::error::Error;
 use std::{env, fs::File, io::BufRead, io::BufReader};
 
-use days::day01;
+use days::{day01, day02};
 
 fn main() -> Result<(), Box<dyn Error>> {
     let args: Vec<String> = env::args().collect();
@@ -26,6 +26,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 fn get_result(day: u32, part: u32, lines: Vec<String>) -> u32 {
     match day {
         1 => day01::solve(part, lines),
+        2 => day02::solve(part, lines),
         _ => todo!(),
     }
 }
