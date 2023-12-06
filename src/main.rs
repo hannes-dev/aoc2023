@@ -1,5 +1,6 @@
 mod days;
 use std::error::Error;
+use std::path::Path;
 use std::{env, fs::File, io::BufRead, io::BufReader};
 
 use days::{day01, day02, day03, day04, day05};
@@ -9,16 +10,15 @@ fn main() -> Result<(), Box<dyn Error>> {
     let day: u32 = args[1].parse()?;
     let part: u32 = args[2].parse()?;
 
-    let test = lines(format!("{day}_test.txt"));
-    let test_result = get_result(day, part, test);
-    println!("Result for day {day}:{part}");
-    println!("  Test = {test_result}");
+    let input = if args.len() == 4 {
+        lines(&Path::new(&args[3]))
+    } else {
+        lines(&Path::new(&format!("./input/{day}_test.txt")))
+    };
 
-    if args.len() > 3 {
-        let full = lines(format!("{day}.txt"));
-        let full_result = get_result(day, part, full);
-        println!("  Full = {full_result}");
-    }
+    let result = get_result(day, part, input);
+    println!("Result for day {day}:{part}");
+    println!("(☞ﾟヮﾟ)☞ {result}");
 
     Ok(())
 }
@@ -34,7 +34,8 @@ fn get_result(day: u32, part: u32, lines: Vec<String>) -> u32 {
     }
 }
 
-fn lines(file_name: String) -> Vec<String> {
-    let reader = BufReader::new(File::open(format!("src/inputs/{file_name}")).expect("file"));
+fn lines(file_name: &Path) -> Vec<String> {
+    dbg!(file_name);
+    let reader = BufReader::new(File::open(file_name).expect("file"));
     reader.lines().map(Result::unwrap).collect()
 }
