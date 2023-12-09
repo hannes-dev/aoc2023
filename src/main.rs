@@ -3,7 +3,7 @@ use std::error::Error;
 use std::path::Path;
 use std::{env, fs::File, io::BufRead, io::BufReader};
 
-use days::{day01, day02, day03, day04, day05, day06};
+use days::{day01, day02, day03, day04, day05, day06, day08};
 
 fn main() -> Result<(), Box<dyn Error>> {
     let args: Vec<String> = env::args().collect();
@@ -31,6 +31,7 @@ fn get_result(day: u32, part: u32, lines: Vec<String>) -> u32 {
         4 => day04::solve(part, lines),
         5 => day05::solve(part, lines),
         6 => day06::solve(part, lines),
+        8 => day08::solve(part, lines),
         _ => todo!(),
     }
 }
