@@ -1,0 +1,15 @@
+pub fn solve(part: u32, lines: Vec<String>) -> u32 {
+    if part == 1 {
+        part1(lines)
+    } else {
+        part2(lines)
+    }
+}
+
+fn part1(lines: Vec<String>) -> u32 {
+    todo!()
+}
+
+fn part2(lines: Vec<String>) -> u32 {
+    todo!()
+}
